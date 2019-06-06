@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysActiveMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysActive">
+    <id column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="atitle" jdbcType="VARCHAR" property="atitle" />
+    <result column="adate" jdbcType="DATE" property="adate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysActive">
+    <result column="apath" jdbcType="LONGVARCHAR" property="apath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    aid, atitle, adate
+  </sql>
+  <sql id="Blob_Column_List">
+    apath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_active
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_active
+    where aid = #{aid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysActive">
+    insert into sys_active (aid, atitle, adate, 
+      apath)
+    values (#{aid,jdbcType=INTEGER}, #{atitle,jdbcType=VARCHAR}, #{adate,jdbcType=DATE}, 
+      #{apath,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysActive">
+    insert into sys_active
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="atitle != null">
+        atitle,
+      </if>
+      <if test="adate != null">
+        adate,
+      </if>
+      <if test="apath != null">
+        apath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aid != null">
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="atitle != null">
+        #{atitle,jdbcType=VARCHAR},
+      </if>
+      <if test="adate != null">
+        #{adate,jdbcType=DATE},
+      </if>
+      <if test="apath != null">
+        #{apath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysActive">
+    update sys_active
+    <set>
+      <if test="atitle != null">
+        atitle = #{atitle,jdbcType=VARCHAR},
+      </if>
+      <if test="adate != null">
+        adate = #{adate,jdbcType=DATE},
+      </if>
+      <if test="apath != null">
+        apath = #{apath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysActive">
+    update sys_active
+    set atitle = #{atitle,jdbcType=VARCHAR},
+      adate = #{adate,jdbcType=DATE},
+      apath = #{apath,jdbcType=LONGVARCHAR}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysActive">
+    update sys_active
+    set atitle = #{atitle,jdbcType=VARCHAR},
+      adate = #{adate,jdbcType=DATE}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+</mapper>

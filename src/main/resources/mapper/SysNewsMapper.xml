@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysNewsMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysNews">
+    <id column="news_id" jdbcType="INTEGER" property="newsId" />
+    <result column="news_title" jdbcType="VARCHAR" property="newsTitle" />
+    <result column="news_date" jdbcType="DATE" property="newsDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysNews">
+    <result column="news_path" jdbcType="LONGVARCHAR" property="newsPath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    news_id, news_title, news_date
+  </sql>
+  <sql id="Blob_Column_List">
+    news_path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_news
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_news
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysNews">
+    insert into sys_news (news_id, news_title, news_date, 
+      news_path)
+    values (#{newsId,jdbcType=INTEGER}, #{newsTitle,jdbcType=VARCHAR}, #{newsDate,jdbcType=DATE}, 
+      #{newsPath,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysNews">
+    insert into sys_news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newsId != null">
+        news_id,
+      </if>
+      <if test="newsTitle != null">
+        news_title,
+      </if>
+      <if test="newsDate != null">
+        news_date,
+      </if>
+      <if test="newsPath != null">
+        news_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newsId != null">
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="newsTitle != null">
+        #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDate != null">
+        #{newsDate,jdbcType=DATE},
+      </if>
+      <if test="newsPath != null">
+        #{newsPath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysNews">
+    update sys_news
+    <set>
+      <if test="newsTitle != null">
+        news_title = #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDate != null">
+        news_date = #{newsDate,jdbcType=DATE},
+      </if>
+      <if test="newsPath != null">
+        news_path = #{newsPath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysNews">
+    update sys_news
+    set news_title = #{newsTitle,jdbcType=VARCHAR},
+      news_date = #{newsDate,jdbcType=DATE},
+      news_path = #{newsPath,jdbcType=LONGVARCHAR}
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysNews">
+    update sys_news
+    set news_title = #{newsTitle,jdbcType=VARCHAR},
+      news_date = #{newsDate,jdbcType=DATE}
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+</mapper>

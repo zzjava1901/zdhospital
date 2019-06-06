@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysFocusMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysFocus">
+    <id column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="ftitle" jdbcType="VARCHAR" property="ftitle" />
+    <result column="fdate" jdbcType="DATE" property="fdate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysFocus">
+    <result column="fpath" jdbcType="LONGVARCHAR" property="fpath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    fid, ftitle, fdate
+  </sql>
+  <sql id="Blob_Column_List">
+    fpath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_focus
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_focus
+    where fid = #{fid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysFocus">
+    insert into sys_focus (fid, ftitle, fdate, 
+      fpath)
+    values (#{fid,jdbcType=INTEGER}, #{ftitle,jdbcType=VARCHAR}, #{fdate,jdbcType=DATE}, 
+      #{fpath,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysFocus">
+    insert into sys_focus
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="ftitle != null">
+        ftitle,
+      </if>
+      <if test="fdate != null">
+        fdate,
+      </if>
+      <if test="fpath != null">
+        fpath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="ftitle != null">
+        #{ftitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fdate != null">
+        #{fdate,jdbcType=DATE},
+      </if>
+      <if test="fpath != null">
+        #{fpath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysFocus">
+    update sys_focus
+    <set>
+      <if test="ftitle != null">
+        ftitle = #{ftitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fdate != null">
+        fdate = #{fdate,jdbcType=DATE},
+      </if>
+      <if test="fpath != null">
+        fpath = #{fpath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysFocus">
+    update sys_focus
+    set ftitle = #{ftitle,jdbcType=VARCHAR},
+      fdate = #{fdate,jdbcType=DATE},
+      fpath = #{fpath,jdbcType=LONGVARCHAR}
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysFocus">
+    update sys_focus
+    set ftitle = #{ftitle,jdbcType=VARCHAR},
+      fdate = #{fdate,jdbcType=DATE}
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysHistory">
+    <id column="hid" jdbcType="INTEGER" property="hid" />
+    <result column="htitle" jdbcType="VARCHAR" property="htitle" />
+    <result column="hdate" jdbcType="DATE" property="hdate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysHistory">
+    <result column="hpath" jdbcType="LONGVARCHAR" property="hpath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    hid, htitle, hdate
+  </sql>
+  <sql id="Blob_Column_List">
+    hpath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_history
+    where hid = #{hid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_history
+    where hid = #{hid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysHistory">
+    insert into sys_history (hid, htitle, hdate, 
+      hpath)
+    values (#{hid,jdbcType=INTEGER}, #{htitle,jdbcType=VARCHAR}, #{hdate,jdbcType=DATE}, 
+      #{hpath,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysHistory">
+    insert into sys_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hid != null">
+        hid,
+      </if>
+      <if test="htitle != null">
+        htitle,
+      </if>
+      <if test="hdate != null">
+        hdate,
+      </if>
+      <if test="hpath != null">
+        hpath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hid != null">
+        #{hid,jdbcType=INTEGER},
+      </if>
+      <if test="htitle != null">
+        #{htitle,jdbcType=VARCHAR},
+      </if>
+      <if test="hdate != null">
+        #{hdate,jdbcType=DATE},
+      </if>
+      <if test="hpath != null">
+        #{hpath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysHistory">
+    update sys_history
+    <set>
+      <if test="htitle != null">
+        htitle = #{htitle,jdbcType=VARCHAR},
+      </if>
+      <if test="hdate != null">
+        hdate = #{hdate,jdbcType=DATE},
+      </if>
+      <if test="hpath != null">
+        hpath = #{hpath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where hid = #{hid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysHistory">
+    update sys_history
+    set htitle = #{htitle,jdbcType=VARCHAR},
+      hdate = #{hdate,jdbcType=DATE},
+      hpath = #{hpath,jdbcType=LONGVARCHAR}
+    where hid = #{hid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysHistory">
+    update sys_history
+    set htitle = #{htitle,jdbcType=VARCHAR},
+      hdate = #{hdate,jdbcType=DATE}
+    where hid = #{hid,jdbcType=INTEGER}
+  </update>
+</mapper>

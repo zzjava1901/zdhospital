@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysClassMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysClass">
+    <id column="cl_id" jdbcType="INTEGER" property="clId" />
+    <result column="cl_title" jdbcType="VARCHAR" property="clTitle" />
+    <result column="cl_date" jdbcType="DATE" property="clDate" />
+    <result column="he_id" jdbcType="INTEGER" property="heId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysClass">
+    <result column="cl_path" jdbcType="LONGVARCHAR" property="clPath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cl_id, cl_title, cl_date, he_id
+  </sql>
+  <sql id="Blob_Column_List">
+    cl_path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_class
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_class
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysClass">
+    insert into sys_class (cl_id, cl_title, cl_date, 
+      he_id, cl_path)
+    values (#{clId,jdbcType=INTEGER}, #{clTitle,jdbcType=VARCHAR}, #{clDate,jdbcType=DATE}, 
+      #{heId,jdbcType=INTEGER}, #{clPath,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysClass">
+    insert into sys_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clId != null">
+        cl_id,
+      </if>
+      <if test="clTitle != null">
+        cl_title,
+      </if>
+      <if test="clDate != null">
+        cl_date,
+      </if>
+      <if test="heId != null">
+        he_id,
+      </if>
+      <if test="clPath != null">
+        cl_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clId != null">
+        #{clId,jdbcType=INTEGER},
+      </if>
+      <if test="clTitle != null">
+        #{clTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="clDate != null">
+        #{clDate,jdbcType=DATE},
+      </if>
+      <if test="heId != null">
+        #{heId,jdbcType=INTEGER},
+      </if>
+      <if test="clPath != null">
+        #{clPath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysClass">
+    update sys_class
+    <set>
+      <if test="clTitle != null">
+        cl_title = #{clTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="clDate != null">
+        cl_date = #{clDate,jdbcType=DATE},
+      </if>
+      <if test="heId != null">
+        he_id = #{heId,jdbcType=INTEGER},
+      </if>
+      <if test="clPath != null">
+        cl_path = #{clPath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysClass">
+    update sys_class
+    set cl_title = #{clTitle,jdbcType=VARCHAR},
+      cl_date = #{clDate,jdbcType=DATE},
+      he_id = #{heId,jdbcType=INTEGER},
+      cl_path = #{clPath,jdbcType=LONGVARCHAR}
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysClass">
+    update sys_class
+    set cl_title = #{clTitle,jdbcType=VARCHAR},
+      cl_date = #{clDate,jdbcType=DATE},
+      he_id = #{heId,jdbcType=INTEGER}
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </update>
+</mapper>

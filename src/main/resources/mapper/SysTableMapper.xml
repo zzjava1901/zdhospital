@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysTableMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysTable">
+    <id column="table_id" jdbcType="INTEGER" property="tableId" />
+    <result column="datetime" jdbcType="DATE" property="datetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysTable">
+    <result column="table_path" jdbcType="LONGVARCHAR" property="tablePath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    table_id, datetime
+  </sql>
+  <sql id="Blob_Column_List">
+    table_path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_table
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_table
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysTable">
+    insert into sys_table (table_id, datetime, table_path
+      )
+    values (#{tableId,jdbcType=INTEGER}, #{datetime,jdbcType=DATE}, #{tablePath,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysTable">
+    insert into sys_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        table_id,
+      </if>
+      <if test="datetime != null">
+        datetime,
+      </if>
+      <if test="tablePath != null">
+        table_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=DATE},
+      </if>
+      <if test="tablePath != null">
+        #{tablePath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysTable">
+    update sys_table
+    <set>
+      <if test="datetime != null">
+        datetime = #{datetime,jdbcType=DATE},
+      </if>
+      <if test="tablePath != null">
+        table_path = #{tablePath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysTable">
+    update sys_table
+    set datetime = #{datetime,jdbcType=DATE},
+      table_path = #{tablePath,jdbcType=LONGVARCHAR}
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysTable">
+    update sys_table
+    set datetime = #{datetime,jdbcType=DATE}
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </update>
+</mapper>

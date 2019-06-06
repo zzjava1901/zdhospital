@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysStaffMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysStaff">
+    <id column="staff_id" jdbcType="INTEGER" property="staffId" />
+    <result column="staff_info" jdbcType="VARCHAR" property="staffInfo" />
+    <result column="xid" jdbcType="INTEGER" property="xid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    staff_id, staff_info, xid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_staff
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_staff
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysStaff">
+    insert into sys_staff (staff_id, staff_info, xid
+      )
+    values (#{staffId,jdbcType=INTEGER}, #{staffInfo,jdbcType=VARCHAR}, #{xid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysStaff">
+    insert into sys_staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="staffInfo != null">
+        staff_info,
+      </if>
+      <if test="xid != null">
+        xid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffInfo != null">
+        #{staffInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="xid != null">
+        #{xid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysStaff">
+    update sys_staff
+    <set>
+      <if test="staffInfo != null">
+        staff_info = #{staffInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="xid != null">
+        xid = #{xid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysStaff">
+    update sys_staff
+    set staff_info = #{staffInfo,jdbcType=VARCHAR},
+      xid = #{xid,jdbcType=INTEGER}
+    where staff_id = #{staffId,jdbcType=INTEGER}
+  </update>
+</mapper>

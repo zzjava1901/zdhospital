@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysSocietyMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysSociety">
+    <id column="society_id" jdbcType="INTEGER" property="societyId" />
+    <result column="jobname" jdbcType="VARCHAR" property="jobname" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="datetime" jdbcType="DATE" property="datetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    society_id, jobname, num, datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_society
+    where society_id = #{societyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_society
+    where society_id = #{societyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysSociety">
+    insert into sys_society (society_id, jobname, num, 
+      datetime)
+    values (#{societyId,jdbcType=INTEGER}, #{jobname,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{datetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysSociety">
+    insert into sys_society
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="societyId != null">
+        society_id,
+      </if>
+      <if test="jobname != null">
+        jobname,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="datetime != null">
+        datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="societyId != null">
+        #{societyId,jdbcType=INTEGER},
+      </if>
+      <if test="jobname != null">
+        #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysSociety">
+    update sys_society
+    <set>
+      <if test="jobname != null">
+        jobname = #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null">
+        datetime = #{datetime,jdbcType=DATE},
+      </if>
+    </set>
+    where society_id = #{societyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysSociety">
+    update sys_society
+    set jobname = #{jobname,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      datetime = #{datetime,jdbcType=DATE}
+    where society_id = #{societyId,jdbcType=INTEGER}
+  </update>
+</mapper>

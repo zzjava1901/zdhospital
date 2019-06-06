@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysNotice">
+    <id column="nid" jdbcType="INTEGER" property="nid" />
+    <result column="ntitle" jdbcType="VARCHAR" property="ntitle" />
+    <result column="ndate" jdbcType="DATE" property="ndate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysNotice">
+    <result column="npath" jdbcType="LONGVARCHAR" property="npath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    nid, ntitle, ndate
+  </sql>
+  <sql id="Blob_Column_List">
+    npath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_notice
+    where nid = #{nid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_notice
+    where nid = #{nid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysNotice">
+    insert into sys_notice (nid, ntitle, ndate, 
+      npath)
+    values (#{nid,jdbcType=INTEGER}, #{ntitle,jdbcType=VARCHAR}, #{ndate,jdbcType=DATE}, 
+      #{npath,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysNotice">
+    insert into sys_notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="nid != null">
+        nid,
+      </if>
+      <if test="ntitle != null">
+        ntitle,
+      </if>
+      <if test="ndate != null">
+        ndate,
+      </if>
+      <if test="npath != null">
+        npath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="nid != null">
+        #{nid,jdbcType=INTEGER},
+      </if>
+      <if test="ntitle != null">
+        #{ntitle,jdbcType=VARCHAR},
+      </if>
+      <if test="ndate != null">
+        #{ndate,jdbcType=DATE},
+      </if>
+      <if test="npath != null">
+        #{npath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysNotice">
+    update sys_notice
+    <set>
+      <if test="ntitle != null">
+        ntitle = #{ntitle,jdbcType=VARCHAR},
+      </if>
+      <if test="ndate != null">
+        ndate = #{ndate,jdbcType=DATE},
+      </if>
+      <if test="npath != null">
+        npath = #{npath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysNotice">
+    update sys_notice
+    set ntitle = #{ntitle,jdbcType=VARCHAR},
+      ndate = #{ndate,jdbcType=DATE},
+      npath = #{npath,jdbcType=LONGVARCHAR}
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysNotice">
+    update sys_notice
+    set ntitle = #{ntitle,jdbcType=VARCHAR},
+      ndate = #{ndate,jdbcType=DATE}
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+</mapper>

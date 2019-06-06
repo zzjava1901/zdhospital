@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysTitleMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysTitle">
+    <id column="title_id" jdbcType="INTEGER" property="titleId" />
+    <result column="title_fu_id" jdbcType="INTEGER" property="titleFuId" />
+    <result column="title_name" jdbcType="VARCHAR" property="titleName" />
+    <result column="title_url" jdbcType="VARCHAR" property="titleUrl" />
+    <result column="title_flag" jdbcType="INTEGER" property="titleFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    title_id, title_fu_id, title_name, title_url, title_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_title
+    where title_id = #{titleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_title
+    where title_id = #{titleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysTitle">
+    insert into sys_title (title_id, title_fu_id, title_name, 
+      title_url, title_flag)
+    values (#{titleId,jdbcType=INTEGER}, #{titleFuId,jdbcType=INTEGER}, #{titleName,jdbcType=VARCHAR}, 
+      #{titleUrl,jdbcType=VARCHAR}, #{titleFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysTitle">
+    insert into sys_title
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="titleId != null">
+        title_id,
+      </if>
+      <if test="titleFuId != null">
+        title_fu_id,
+      </if>
+      <if test="titleName != null">
+        title_name,
+      </if>
+      <if test="titleUrl != null">
+        title_url,
+      </if>
+      <if test="titleFlag != null">
+        title_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="titleId != null">
+        #{titleId,jdbcType=INTEGER},
+      </if>
+      <if test="titleFuId != null">
+        #{titleFuId,jdbcType=INTEGER},
+      </if>
+      <if test="titleName != null">
+        #{titleName,jdbcType=VARCHAR},
+      </if>
+      <if test="titleUrl != null">
+        #{titleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="titleFlag != null">
+        #{titleFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysTitle">
+    update sys_title
+    <set>
+      <if test="titleFuId != null">
+        title_fu_id = #{titleFuId,jdbcType=INTEGER},
+      </if>
+      <if test="titleName != null">
+        title_name = #{titleName,jdbcType=VARCHAR},
+      </if>
+      <if test="titleUrl != null">
+        title_url = #{titleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="titleFlag != null">
+        title_flag = #{titleFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where title_id = #{titleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysTitle">
+    update sys_title
+    set title_fu_id = #{titleFuId,jdbcType=INTEGER},
+      title_name = #{titleName,jdbcType=VARCHAR},
+      title_url = #{titleUrl,jdbcType=VARCHAR},
+      title_flag = #{titleFlag,jdbcType=INTEGER}
+    where title_id = #{titleId,jdbcType=INTEGER}
+  </update>
+</mapper>

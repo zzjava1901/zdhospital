@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysDoctorMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysDoctor">
+    <id column="doc_id" jdbcType="INTEGER" property="docId" />
+    <result column="doc_name" jdbcType="VARCHAR" property="docName" />
+    <result column="doc_info" jdbcType="VARCHAR" property="docInfo" />
+    <result column="doc_img" jdbcType="VARCHAR" property="docImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    doc_id, doc_name, doc_info, doc_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_doctor
+    where doc_id = #{docId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_doctor
+    where doc_id = #{docId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysDoctor">
+    insert into sys_doctor (doc_id, doc_name, doc_info, 
+      doc_img)
+    values (#{docId,jdbcType=INTEGER}, #{docName,jdbcType=VARCHAR}, #{docInfo,jdbcType=VARCHAR}, 
+      #{docImg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysDoctor">
+    insert into sys_doctor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="docId != null">
+        doc_id,
+      </if>
+      <if test="docName != null">
+        doc_name,
+      </if>
+      <if test="docInfo != null">
+        doc_info,
+      </if>
+      <if test="docImg != null">
+        doc_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="docId != null">
+        #{docId,jdbcType=INTEGER},
+      </if>
+      <if test="docName != null">
+        #{docName,jdbcType=VARCHAR},
+      </if>
+      <if test="docInfo != null">
+        #{docInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="docImg != null">
+        #{docImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysDoctor">
+    update sys_doctor
+    <set>
+      <if test="docName != null">
+        doc_name = #{docName,jdbcType=VARCHAR},
+      </if>
+      <if test="docInfo != null">
+        doc_info = #{docInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="docImg != null">
+        doc_img = #{docImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where doc_id = #{docId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysDoctor">
+    update sys_doctor
+    set doc_name = #{docName,jdbcType=VARCHAR},
+      doc_info = #{docInfo,jdbcType=VARCHAR},
+      doc_img = #{docImg,jdbcType=VARCHAR}
+    where doc_id = #{docId,jdbcType=INTEGER}
+  </update>
+</mapper>

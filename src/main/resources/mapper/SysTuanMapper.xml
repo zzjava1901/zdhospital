@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysTuanMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysTuan">
+    <id column="tuan_id" jdbcType="INTEGER" property="tuanId" />
+    <result column="ttitle" jdbcType="VARCHAR" property="ttitle" />
+    <result column="tdate" jdbcType="DATE" property="tdate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysTuan">
+    <result column="tpath" jdbcType="LONGVARCHAR" property="tpath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tuan_id, ttitle, tdate
+  </sql>
+  <sql id="Blob_Column_List">
+    tpath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_tuan
+    where tuan_id = #{tuanId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_tuan
+    where tuan_id = #{tuanId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysTuan">
+    insert into sys_tuan (tuan_id, ttitle, tdate, 
+      tpath)
+    values (#{tuanId,jdbcType=INTEGER}, #{ttitle,jdbcType=VARCHAR}, #{tdate,jdbcType=DATE}, 
+      #{tpath,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysTuan">
+    insert into sys_tuan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tuanId != null">
+        tuan_id,
+      </if>
+      <if test="ttitle != null">
+        ttitle,
+      </if>
+      <if test="tdate != null">
+        tdate,
+      </if>
+      <if test="tpath != null">
+        tpath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tuanId != null">
+        #{tuanId,jdbcType=INTEGER},
+      </if>
+      <if test="ttitle != null">
+        #{ttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tdate != null">
+        #{tdate,jdbcType=DATE},
+      </if>
+      <if test="tpath != null">
+        #{tpath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysTuan">
+    update sys_tuan
+    <set>
+      <if test="ttitle != null">
+        ttitle = #{ttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tdate != null">
+        tdate = #{tdate,jdbcType=DATE},
+      </if>
+      <if test="tpath != null">
+        tpath = #{tpath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where tuan_id = #{tuanId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysTuan">
+    update sys_tuan
+    set ttitle = #{ttitle,jdbcType=VARCHAR},
+      tdate = #{tdate,jdbcType=DATE},
+      tpath = #{tpath,jdbcType=LONGVARCHAR}
+    where tuan_id = #{tuanId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysTuan">
+    update sys_tuan
+    set ttitle = #{ttitle,jdbcType=VARCHAR},
+      tdate = #{tdate,jdbcType=DATE}
+    where tuan_id = #{tuanId,jdbcType=INTEGER}
+  </update>
+</mapper>

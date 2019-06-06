@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysBianpeMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysBianpe">
+    <id column="bp_id" jdbcType="INTEGER" property="bpId" />
+    <result column="bp_name" jdbcType="VARCHAR" property="bpName" />
+    <result column="bp_url" jdbcType="VARCHAR" property="bpUrl" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bp_id, bp_name, bp_url, t_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_bianpe
+    where bp_id = #{bpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_bianpe
+    where bp_id = #{bpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysBianpe">
+    insert into sys_bianpe (bp_id, bp_name, bp_url, 
+      t_id)
+    values (#{bpId,jdbcType=INTEGER}, #{bpName,jdbcType=VARCHAR}, #{bpUrl,jdbcType=VARCHAR}, 
+      #{tId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysBianpe">
+    insert into sys_bianpe
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bpId != null">
+        bp_id,
+      </if>
+      <if test="bpName != null">
+        bp_name,
+      </if>
+      <if test="bpUrl != null">
+        bp_url,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bpId != null">
+        #{bpId,jdbcType=INTEGER},
+      </if>
+      <if test="bpName != null">
+        #{bpName,jdbcType=VARCHAR},
+      </if>
+      <if test="bpUrl != null">
+        #{bpUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysBianpe">
+    update sys_bianpe
+    <set>
+      <if test="bpName != null">
+        bp_name = #{bpName,jdbcType=VARCHAR},
+      </if>
+      <if test="bpUrl != null">
+        bp_url = #{bpUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bp_id = #{bpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysBianpe">
+    update sys_bianpe
+    set bp_name = #{bpName,jdbcType=VARCHAR},
+      bp_url = #{bpUrl,jdbcType=VARCHAR},
+      t_id = #{tId,jdbcType=INTEGER}
+    where bp_id = #{bpId,jdbcType=INTEGER}
+  </update>
+</mapper>

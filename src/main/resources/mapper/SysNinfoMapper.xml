@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.zdhospital.dao.SysNinfoMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysNinfo">
+    <id column="ni_id" jdbcType="INTEGER" property="niId" />
+    <result column="ni_title" jdbcType="VARCHAR" property="niTitle" />
+    <result column="ni_date" jdbcType="DATE" property="niDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysNinfo">
+    <result column="ni_text" jdbcType="LONGVARCHAR" property="niText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ni_id, ni_title, ni_date
+  </sql>
+  <sql id="Blob_Column_List">
+    ni_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_ninfo
+    where ni_id = #{niId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_ninfo
+    where ni_id = #{niId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.zdhospital.entity.SysNinfo">
+    insert into sys_ninfo (ni_id, ni_title, ni_date, 
+      ni_text)
+    values (#{niId,jdbcType=INTEGER}, #{niTitle,jdbcType=VARCHAR}, #{niDate,jdbcType=DATE}, 
+      #{niText,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.zdhospital.entity.SysNinfo">
+    insert into sys_ninfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="niId != null">
+        ni_id,
+      </if>
+      <if test="niTitle != null">
+        ni_title,
+      </if>
+      <if test="niDate != null">
+        ni_date,
+      </if>
+      <if test="niText != null">
+        ni_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="niId != null">
+        #{niId,jdbcType=INTEGER},
+      </if>
+      <if test="niTitle != null">
+        #{niTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="niDate != null">
+        #{niDate,jdbcType=DATE},
+      </if>
+      <if test="niText != null">
+        #{niText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.zdhospital.entity.SysNinfo">
+    update sys_ninfo
+    <set>
+      <if test="niTitle != null">
+        ni_title = #{niTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="niDate != null">
+        ni_date = #{niDate,jdbcType=DATE},
+      </if>
+      <if test="niText != null">
+        ni_text = #{niText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ni_id = #{niId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiao.zdhospital.entity.SysNinfo">
+    update sys_ninfo
+    set ni_title = #{niTitle,jdbcType=VARCHAR},
+      ni_date = #{niDate,jdbcType=DATE},
+      ni_text = #{niText,jdbcType=LONGVARCHAR}
+    where ni_id = #{niId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.zdhospital.entity.SysNinfo">
+    update sys_ninfo
+    set ni_title = #{niTitle,jdbcType=VARCHAR},
+      ni_date = #{niDate,jdbcType=DATE}
+    where ni_id = #{niId,jdbcType=INTEGER}
+  </update>
+</mapper>
