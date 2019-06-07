@@ -90,4 +90,7 @@
       title_flag = #{titleFlag,jdbcType=INTEGER}
     where title_id = #{titleId,jdbcType=INTEGER}
   </update>
+  <select id="menu" parameterType="int" resultType="com.xiao.zdhospital.entity">
+    select * from sys_title where title_flag = #{titleFlag}
+  </select>
 </mapper>

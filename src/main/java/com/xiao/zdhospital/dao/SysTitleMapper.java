@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysTitle;
 
+import java.util.List;
+
 public interface SysTitleMapper {
     int deleteByPrimaryKey(Integer titleId);
 
@@ -14,4 +16,7 @@ public interface SysTitleMapper {
     int updateByPrimaryKeySelective(SysTitle record);
 
     int updateByPrimaryKey(SysTitle record);
+
+    public List<SysTitle> menu(int titleFlag);
+
 }
