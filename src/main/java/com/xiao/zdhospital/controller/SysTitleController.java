@@ -27,6 +27,13 @@ public class SysTitleController {
         return R.setOK("OK",list);
     }
 
+    @ApiOperation(value = "二级菜单展示", notes = "这是一个二级菜单展示")
+    @RequestMapping(value = "submenu.do", method = RequestMethod.GET)
+    public R  showSubMenu(int titleFuId){
+        List<SysTitle> list = titleService.submenu(titleFuId);
+        return R.setOK("OK",list);
+    }
+
 
 
 

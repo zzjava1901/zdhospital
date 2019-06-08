@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<meta name="Author" content="">
+<title>我的虚拟世界店铺</title>
+<link href="css/css_whir.css" rel="stylesheet" type="text/css" />
+<script src="Scripts/jquery-1.4.2.min.js" type="text/javascript"></script>
+
+</head>
+
+<body class="bgbody">
+<!--Header-->
+<div class="Header">
+    <a href="#" class="logo"></a>
+    <span class="nav"><em style="display:none;"><b>超级管理员</b> <a href="#">退出登录</a></em><em><a href="#">登录</a> | <a href="#">注册</a></em> | <a href="#">网站地图</a> | <a href="contact.html">联系我们</a> | <a href="#" onclick="javascript:addfavor('http://www.zdhyyy.com/','我的虚拟世界店铺');">加入收藏</a></span>
+    <span class="search">
+    <input type="text" name="textfield" id="textfield" value="搜索关键词" onblur="if(this.value=='')this.value='搜索关键词';" onfocus="this.value='';" class="text" />
+    <input type="submit" name="button" id="button" value="" class="btn" />
+    </span>
+    <div class="mainnav">
+        <ul>
+            <li id="nav1"><span><a href="index.html">首页</a></span></li>
+            <li id="nav2"><span><a href="about.html">医院概况</a></span>
+                <div class="sub">
+                <a href="#">医院介绍</a>
+                <a href="#">领导团队</a>
+                <a href="#">组织架构</a>
+                <a href="#">历史沿革</a>
+                <a href="#">图片资料</a>
+                <a href="#">医院文化</a>
+                <a href="#">所获荣誉</a>
+                <a href="#">设备仪器</a>
+                </div>
+            </li>
+            <li id="nav3"><span><a href="news.html">新闻动态</a></span>
+                <div class="sub">
+                <a href="#">医院新闻</a>
+                <a href="#">医院公告</a>
+                <a href="#">媒体聚焦</a>
+                <a href="#">活动院报</a>
+                </div>
+            </li>
+            <li id="nav4"><span><a href="caucus.html">党团建设</a></span>
+                <div class="sub">
+                <a href="#">党建活动</a>
+                <a href="#">团建活动</a>
+                <a href="#">历史背景</a>
+                <a href="#">党团新闻</a>
+                <a href="#">知识理论</a>
+                <a href="#">纪检督察</a>                
+                </div>
+            </li>
+            <li id="nav5"><span><a href="department.html">科室导航</a></span>
+                <div class="sub">
+                <a href="#">临床科室</a>
+                <a href="#">医辅科室</a>
+                <a href="#">行政科室</a>
+                </div>
+            </li>
+            <li id="nav6"><span><a href="service.html">就医服务</a></span>
+                <div class="sub">
+                <a href="#">便民服务</a>
+                <a href="#">健康家园</a>
+                <a href="#">交流咨询</a>
+                </div>
+            </li>
+            <li id="nav7"><span><a href="medical.html">网上医疗</a></span>
+                <div class="sub">
+                <a href="#">预约服务</a>
+                <a href="#">急诊服务</a>
+                <a href="#">健康体检</a>
+                <a href="#">信息查询</a>
+                <a href="#">门诊指南</a>
+                </div>
+            </li>
+            <li id="nav8"><span><a href="hospital.html">医护园地</a></span>
+                <div class="sub">
+                <a href="#">专家资料</a>
+                <a href="#">护理天地</a>
+                <a href="#">内部交流</a>
+                <a href="#">医疗团队</a>
+                <a href="#">医师排名</a>
+                </div>
+            </li>
+            <li id="nav9"><span><a href="teaching.html">教学科研</a></span>
+                <div class="sub">
+                <a href="#">科研动态</a>
+                <a href="#">学术论文</a>
+                <a href="#">基金项目</a>
+                <a href="#">媒体报道</a>
+                <a href="#">学术队伍</a>
+                <a href="#">科研成果展示</a>
+                <a href="#">成果专利</a>
+                <a href="#">学术交流</a>
+                <a href="#">学科建设</a>
+                <a href="#">出版著作</a>
+                </div>
+            </li>
+            <li id="nav10"><span><a href="journal.html">惠亚通讯</a></span>
+                <div class="sub">
+                <a href="#">医院院报</a>
+                <a href="#">医学杂志</a>
+                <a href="#">图书资源</a>
+                </div>
+            </li>
+            <li id="nav11"><span><a href="jobs.html">人才招聘</a></span>
+                <div class="sub">
+                <a href="#">校园招聘</a>
+                <a href="#">社会招聘</a>
+                <a href="#">内部招聘</a>
+                <a href="#">招聘表格</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script language="javascript">
+function addfavor(url,title) {
+if(confirm("网站名称："+title+"\n网址："+url+"\n确定添加收藏?")){
+var ua = navigator.userAgent.toLowerCase();
+if(ua.indexOf("msie 8")>-1){
+external.AddToFavoritesBar(url,title,'我的虚拟世界店铺');//IE8
+}else{
+try {
+window.external.addFavorite(url, title);
+} catch(e) {
+try {
+window.sidebar.addPanel(title, url, "");//firefox
+} catch(e) {
+alert("加入收藏失败，请使用Ctrl+D进行添加");
+}
+}
+}
+}
+return false;
+}
+</script>
+<script type="text/javascript">
+    jQuery(".mainnav ul li").mouseover(function () {
+        jQuery(".mainnav ul li").attr("class", "");
+        jQuery(this).children(".sub").show();
+        jQuery(this).attr("class", "onnav");
+    });
+    jQuery(".mainnav ul li").mouseleave(function () {
+        jQuery(this).children(".sub").hide();
+        jQuery(this).attr("class", "");
+    });
+    jQuery(".mainnav .sub").mouseleave(function () {
+        jQuery("#nav" + nav).attr("class", "onnav");
+    });
+    jQuery(".mainnav").mouseleave(function () {
+        jQuery("#nav" + nav).attr("class", "onnav");
+    });
+</script>
+<!--Header end-->
+<!--Mid-->
+<div class="Contain">
+    <!--left-->
+    <div class="Sidebar"><div class="menu">
+    <h2><img src="images/menu_caucus.jpg"></h2>
+    <dl>
+        <ul>
+            <li><a id="menu1" href="caucus.html">党建活动</a></li>
+            <li><a id="menu2" href="#">团建活动</a></li>
+            <li><a id="menu3" href="history.html">历史背景</a></li>
+            <li><a id="menu4" href="#">党团新闻</a></li>
+            <li><a id="menu5" href="#">知识理论</a></li>
+            <li><a id="menu6" href="#">纪检督察</a></li>
+        </ul>
+    </dl>
+</div>
+<script type="text/javascript" language="javascript">
+  jQuery("#menu1").attr("class", "on");
+</script><div class="QuickLinks">
+    <h2><b>网上医疗</b></h2>
+    <dl>
+    <a class="a1" href="#" title="预约服务"></a>
+    <a class="a2" href="#" title="急诊服务"></a>
+    <a class="a3" href="#" title="健康体检"></a>
+    <a class="a4" href="#" title="信息查询"></a>
+    <a class="a5" href="#" title="门诊指南"></a>
+    </dl>
+</div>
+<div class="PhotoLinks">
+<a class="a_Journals" href="#" title="期刊杂志"></a>
+<a class="a_Recruitment" href="#" title="人才招聘"></a>
+</div> 
+    </div>
+    <!--left end-->
+    <!--right-->
+    <div class="Main">
+    
+        <div class="location">
+            <dl><a href="#">首页</a> / <a href="#">党团建设</a> / <span>党建活动</span></dl>
+            <h1>党建活动</h1>
+        </div>
+        
+    <!--Start-->
+    <h5 class="info_title">关于我司参加2012年中国建筑装饰行业企业家峰.</h5>
+    <h6 class="info_time">发布时间：2012.06.25</h6>
+    <div class="info_txt">     
+    　　公司自成立以来，始终把“诚信”、“质量”、“服务”和“品牌”融入经营理念、管理制度和企业文化，坚持诚信积累，严格质量管理、提升服务视频、塑造企业形象。以和谐进步为企业宗旨，努力提高装饰施工和设计技术水平，在不变中寻求万变，以超越常规之智，开拓创新，使企业在市场经济大潮中立于不败之地，不断前进。现为广州市建筑装饰行业协会副会长单位，广东省建筑业协会和中国建筑装饰协会常务理事单位，取得了ISO9001：2000质量体系认证、ISO14001环境管理体系认证和OHSAS18001职业健康安全管理体系三位一体管理体系认证，获得广东省建设厅安全资质认证，广东发展银行“AAA”资信企业认证，并获得中国建筑装饰协会颁发的2009年及2010年度中国装饰百强企业称号，公司还连续十一年被上级主管部门评为“守合同重信用”企业。<br /><br />
+    　　成就，源自于优秀团队的高素质人才的集结、组合、合作与进步；成功，源自于团队的经验、素养和专业与创造、继承和创新的结合，务实与发展的共融。目前，公司业务遍及广东全省并扩展到天津、上海、重庆、河南、吉林、河北、陕西、新疆、云南、四川、福建、海南、石家庄等省市，是多次荣获省市双优样板工程、广东省建筑工程装饰奖和公共建筑装饰设计奖、全国建筑工程装饰奖和公共建筑装饰设计奖的建筑界后起之秀和骨干企业。<br /><br />
+    　　近年来，公司先后承接了一大批酒店、金融机构、办公大楼、大型商场和高档住宅的设计和装饰工作，取得了较好的经济效益和社会效益。其中：农行珠海市分行总部大楼装饰工程的设计与施工先后获得广东省珠海市安全文明施工“双优”样板工地称号、广东省建筑工程装饰奖和公共建筑装饰设计奖、全国建筑工程装饰奖和公共建筑装饰设计奖。 <br /><br />
+    　　装饰设计是公司的优势支柱：在四星级酒店福建漳州大酒店装饰改造设计投标中获得了设计第一名；农业银行广东省分行总部大楼、漳州交警支队大楼、深圳比克电池有限公司办公大厦、广东汕尾海关大楼、农行综合网点、农行科技园大楼、汕头龙湖夜总会以及广东省揭阳市御景花园小区景观等项目都是设计中标单位。<br /><br />
+    　　公司承接的施工项目，以优秀的质量与服务，获得较好的社会效益。佛山金怡酒店、广州名潮酒家等项目开业后都获得好评；广东省物价局办公大楼则以工期短、施工范围广、组织管理高效获得业主赞赏；好多项目还形成了系列化施工：其中有揭阳市区农村信用合作社联合社总社办公楼及属下网点的设计和施工，农业银行的广州、中山、珠海、汕头等分行及属下数十个支行、网点的设计和施工，并作为一个样板模式进行推广。香格里拉酒店系列则先后完成中山香格里拉大酒店总统套房、豪华套房；福州香格里拉大酒店商场、餐厅、咖啡厅、客房；广州琶洲香格里拉大酒店客房及总统套房精装修工程等系列施工。<br /><br />
+    　　回顾爱富兰人走过的历程，不仅看到时代发展大潮的天时、以及改革开放前沿的地利，更感受到企业在和谐进步的道路上，靠质量立足，以服务竞争，用精品说话，从管理求效益所营造的人和优势。面对未来的挑战，爱富兰人会凭着认真执着、诚信实干、热情服务和专业智慧，致力于装饰行业的不断开拓，在前进中展现光芒，卓尔不凡，力争行进于同行业之前列！
+    </div>
+    <!--End-->
+    <div class="info_back"><a href="#" class="back">返回列表</a> 上一篇：<a href="#">人人乐连锁商业集团股份有限公司选择万户网站  
+</a> 下一篇：<a href="#">万户助力华南师范大学打造官方网站建设项目</a></div>
+        
+    </div>
+    <!--right end-->
+    <div class="clear"></div>     
+    
+</div>
+<!--Mid end-->
+
+<!--Footer-->
+<div class="Footer">
+<span class="nav"><a href="#">首页</a> | <a href="contact.html">联系我们</a> | <a href="#">健康教育</a> | <a href="links.html">相关链接</a> | <a href="#">网站地图</a></span>
+Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http://shop116703760.taobao.com/" target="_blank" class="我的虚拟世界店铺">Designed by 我的虚拟世界店铺</a><br />
+未经授权禁止转载、摘编、复制或建立镜像，违者将追究其法律责任  建议使用1024×768分辨率 IE6.0以上版本浏览器
+</div><!--Footer end-->
+
+<script type="text/javascript">
+ var nav= '4'
+ jQuery("#nav4").attr("class", "onnav");
+</script>
+</body>
+</html>

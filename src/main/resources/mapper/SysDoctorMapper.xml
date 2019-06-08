@@ -79,4 +79,13 @@
       doc_img = #{docImg,jdbcType=VARCHAR}
     where doc_id = #{docId,jdbcType=INTEGER}
   </update>
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from sys_doctor
+  </select>
+
+  <select id="findByIid" parameterType="int" resultMap="BaseResultMap">
+    select * from sys_doctor where iid = #{iId}
+  </select>
+
+
 </mapper>

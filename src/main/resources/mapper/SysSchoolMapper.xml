@@ -79,4 +79,12 @@
       datetime = #{datetime,jdbcType=DATE}
     where school_id = #{schoolId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from sys_school
+  </select>
+
+  <select id="count" resultType="int">
+    select count(*) from sys_school
+  </select>
 </mapper>

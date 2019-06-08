@@ -9,12 +9,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class SysTitleServiceImpl implements SysTitleService {
-@Autowired(required = false)
+@Autowired
 private SysTitleMapper titleDao;
 
     @Override
     public List<SysTitle> menu(int titleFlag) {
+        List<SysTitle> list = titleDao.menu(titleFlag);
 
-        return titleDao.menu(titleFlag);
+
+
+        return list;
+
+    }
+
+    @Override
+    public List<SysTitle> submenu(int titleFuId) {
+
+        return titleDao.submenu(titleFuId);
     }
 }

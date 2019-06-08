@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysDang;
 
+import java.util.List;
+
 public interface SysDangMapper {
     int deleteByPrimaryKey(Integer did);
 
@@ -16,4 +18,7 @@ public interface SysDangMapper {
     int updateByPrimaryKeyWithBLOBs(SysDang record);
 
     int updateByPrimaryKey(SysDang record);
+
+    public List<SysDang> findAll();
+
 }

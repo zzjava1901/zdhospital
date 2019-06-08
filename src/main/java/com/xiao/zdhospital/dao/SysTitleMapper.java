@@ -1,6 +1,8 @@
 package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysTitle;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -18,5 +20,7 @@ public interface SysTitleMapper {
     int updateByPrimaryKey(SysTitle record);
 
     public List<SysTitle> menu(int titleFlag);
+
+    public List<SysTitle> submenu(int titleFuId);
 
 }

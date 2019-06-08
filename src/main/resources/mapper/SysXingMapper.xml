@@ -68,4 +68,9 @@
       tid = #{tid,jdbcType=INTEGER}
     where xid = #{xid,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" parameterType="int" resultMap="BaseResultMap">
+    select * from sys_xing where tid = #{tid}
+  </select>
+
 </mapper>

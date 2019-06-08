@@ -79,4 +79,9 @@
       linfo = #{linfo,jdbcType=VARCHAR}
     where lid = #{lid,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from sys_leader
+  </select>
+
 </mapper>

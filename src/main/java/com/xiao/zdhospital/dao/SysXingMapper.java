@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysXing;
 
+import java.util.List;
+
 public interface SysXingMapper {
     int deleteByPrimaryKey(Integer xid);
 
@@ -14,4 +16,6 @@ public interface SysXingMapper {
     int updateByPrimaryKeySelective(SysXing record);
 
     int updateByPrimaryKey(SysXing record);
+
+    public List<SysXing> findAll(int tid);
 }

@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface SysTitleService {
     public List<SysTitle> menu(int titleFlag);
+    public List<SysTitle> submenu(int titleFuId);
 
 }
