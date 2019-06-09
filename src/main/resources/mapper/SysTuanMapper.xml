@@ -92,4 +92,9 @@
       tdate = #{tdate,jdbcType=DATE}
     where tuan_id = #{tuanId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from sys_tuan
+  </select>
+
 </mapper>

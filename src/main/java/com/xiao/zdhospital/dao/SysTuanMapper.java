@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysTuan;
 
+import java.util.List;
+
 public interface SysTuanMapper {
     int deleteByPrimaryKey(Integer tuanId);
 
@@ -16,4 +18,7 @@ public interface SysTuanMapper {
     int updateByPrimaryKeyWithBLOBs(SysTuan record);
 
     int updateByPrimaryKey(SysTuan record);
+
+    public List<SysTuan> findAll();
+
 }
