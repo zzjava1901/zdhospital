@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysHealth;
 
+import java.util.List;
+
 public interface SysHealthMapper {
     int deleteByPrimaryKey(Integer heId);
 
@@ -14,4 +16,6 @@ public interface SysHealthMapper {
     int updateByPrimaryKeySelective(SysHealth record);
 
     int updateByPrimaryKey(SysHealth record);
+    public List<SysHealth> find(int tid);
+
 }

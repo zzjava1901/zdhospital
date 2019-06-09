@@ -79,4 +79,8 @@
       docter_id = #{docterId,jdbcType=INTEGER}
     where fast_id = #{fastId,jdbcType=INTEGER}
   </update>
+  <select id="find" parameterType="int" resultMap="BaseResultMap">
+    select * from sys_fast where iid = #{iId}
+  </select> 
+  
 </mapper>

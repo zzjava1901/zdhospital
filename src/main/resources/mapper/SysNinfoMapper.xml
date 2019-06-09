@@ -92,4 +92,8 @@
       ni_date = #{niDate,jdbcType=DATE}
     where ni_id = #{niId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from sys_ninfo
+  </select>
 </mapper>

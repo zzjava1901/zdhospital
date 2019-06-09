@@ -79,4 +79,10 @@
       doctor_id = #{doctorId,jdbcType=INTEGER}
     where out_id = #{outId,jdbcType=INTEGER}
   </update>
+
+  <select id="find" parameterType="int" resultMap="BaseResultMap">
+    select * from sys_out where iid=#{iId}
+  </select>
+
+
 </mapper>

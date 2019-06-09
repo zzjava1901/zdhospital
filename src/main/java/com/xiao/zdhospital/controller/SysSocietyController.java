@@ -1,6 +1,7 @@
 package com.xiao.zdhospital.controller;
 
-import com.xiao.zdhospital.service.SysSchoolService;
+
+import com.xiao.zdhospital.service.SysSocietyService;
 import com.xiao.zdhospital.vo.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,17 +14,15 @@ import java.util.Map;
 
 @Api
 @RestController
-@RequestMapping("/sysSchool")
-
-public class SysSchoolController {
-
+@RequestMapping("/sysSociety")
+public class SysSocietyController {
     @Autowired
-    private SysSchoolService schoolService;
+    private SysSocietyService societyService;
 
-    @ApiOperation(value = "查询所有校园招聘",notes = "这是一个查询所有校园招聘")
+    @ApiOperation(value = "查询所有社会招聘",notes = "这是一个查询所有社会招聘")
     @RequestMapping(value = "findAll",method = RequestMethod.GET)
     public R findAll(int page){
-        Map<String, Object> map = schoolService.findAll(page);
+        Map<String, Object> map = societyService.findAll(page);
         return R.setOK("OK",map);
     }
 

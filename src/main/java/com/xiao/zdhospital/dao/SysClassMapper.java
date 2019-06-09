@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysClass;
 
+import java.util.List;
+
 public interface SysClassMapper {
     int deleteByPrimaryKey(Integer clId);
 
@@ -16,4 +18,7 @@ public interface SysClassMapper {
     int updateByPrimaryKeyWithBLOBs(SysClass record);
 
     int updateByPrimaryKey(SysClass record);
+
+    public List<SysClass> findAll(int heId);
+
 }

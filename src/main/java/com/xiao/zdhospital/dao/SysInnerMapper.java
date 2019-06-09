@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysInner;
 
+import java.util.List;
+
 public interface SysInnerMapper {
     int deleteByPrimaryKey(Integer innerId);
 
@@ -14,4 +16,7 @@ public interface SysInnerMapper {
     int updateByPrimaryKeySelective(SysInner record);
 
     int updateByPrimaryKey(SysInner record);
+
+    public List<SysInner> find(int iId);
+
 }

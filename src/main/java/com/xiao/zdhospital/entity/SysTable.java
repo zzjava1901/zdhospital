@@ -4,10 +4,13 @@ import java.util.Date;
 
 public class SysTable {
     private Integer tableId;
+    private String tableTitle;
 
     private Date datetime;
 
-    private String tablePath;
+    private String tableUrl;
+
+
 
     public Integer getTableId() {
         return tableId;
@@ -25,11 +28,19 @@ public class SysTable {
         this.datetime = datetime;
     }
 
-    public String getTablePath() {
-        return tablePath;
+    public String getTableTitle() {
+        return tableTitle;
     }
 
-    public void setTablePath(String tablePath) {
-        this.tablePath = tablePath == null ? null : tablePath.trim();
+    public void setTableTitle(String tableTitle) {
+        this.tableTitle = tableTitle;
+    }
+
+    public String getTableUrl() {
+        return tableUrl;
+    }
+
+    public void setTableUrl(String tableUrl) {
+        this.tableUrl = tableUrl;
     }
 }

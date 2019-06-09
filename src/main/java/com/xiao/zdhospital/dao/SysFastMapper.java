@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysFast;
 
+import java.util.List;
+
 public interface SysFastMapper {
     int deleteByPrimaryKey(Integer fastId);
 
@@ -14,4 +16,7 @@ public interface SysFastMapper {
     int updateByPrimaryKeySelective(SysFast record);
 
     int updateByPrimaryKey(SysFast record);
+
+    public List<SysFast> find(int iId);
+
 }
