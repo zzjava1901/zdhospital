@@ -79,4 +79,8 @@
       t_id = #{tId,jdbcType=INTEGER}
     where bp_id = #{bpId,jdbcType=INTEGER}
   </update>
+  <select id="find" parameterType="int" resultMap="BaseResultMap">
+    select * from sys_bianpe where t_id=#{tid}
+  </select>
+
 </mapper>

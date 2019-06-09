@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysNinfo;
 
+import java.util.List;
+
 public interface SysNinfoMapper {
     int deleteByPrimaryKey(Integer niId);
 
@@ -16,4 +18,7 @@ public interface SysNinfoMapper {
     int updateByPrimaryKeyWithBLOBs(SysNinfo record);
 
     int updateByPrimaryKey(SysNinfo record);
+
+    public List<SysNinfo> findAll();
+
 }

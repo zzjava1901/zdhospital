@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysSociety;
 
+import java.util.List;
+
 public interface SysSocietyMapper {
     int deleteByPrimaryKey(Integer societyId);
 
@@ -14,4 +16,7 @@ public interface SysSocietyMapper {
     int updateByPrimaryKeySelective(SysSociety record);
 
     int updateByPrimaryKey(SysSociety record);
+
+    public List<SysSociety> findAll();
+
 }

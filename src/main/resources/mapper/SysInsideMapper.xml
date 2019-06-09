@@ -79,4 +79,9 @@
       datetime = #{datetime,jdbcType=DATE}
     where inside_id = #{insideId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from sys_inside
+  </select>
+
 </mapper>

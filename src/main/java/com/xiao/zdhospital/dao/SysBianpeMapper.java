@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysBianpe;
 
+import java.util.List;
+
 public interface SysBianpeMapper {
     int deleteByPrimaryKey(Integer bpId);
 
@@ -14,4 +16,7 @@ public interface SysBianpeMapper {
     int updateByPrimaryKeySelective(SysBianpe record);
 
     int updateByPrimaryKey(SysBianpe record);
+
+    public List<SysBianpe> find(int tid);
+
 }

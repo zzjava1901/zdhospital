@@ -104,4 +104,9 @@
       he_id = #{heId,jdbcType=INTEGER}
     where cl_id = #{clId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" parameterType="int" resultMap="BaseResultMap">
+    select * from sys_class where he_id=#{heId}
+  </select>
+
 </mapper>

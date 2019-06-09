@@ -79,4 +79,9 @@
       datetime = #{datetime,jdbcType=DATE}
     where society_id = #{societyId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from sys_society
+  </select>
+
 </mapper>

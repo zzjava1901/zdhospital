@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysStaff;
 
+import java.util.List;
+
 public interface SysStaffMapper {
     int deleteByPrimaryKey(Integer staffId);
 
@@ -14,4 +16,7 @@ public interface SysStaffMapper {
     int updateByPrimaryKeySelective(SysStaff record);
 
     int updateByPrimaryKey(SysStaff record);
+
+    public List<SysStaff> find(int xId);
+
 }

@@ -3,25 +3,18 @@
 <mapper namespace="com.xiao.zdhospital.dao.SysTableMapper">
   <resultMap id="BaseResultMap" type="com.xiao.zdhospital.entity.SysTable">
     <id column="table_id" jdbcType="INTEGER" property="tableId" />
+    <result column="table_title" jdbcType="VARCHAR" property="tableTitle" />
+    <result column="table_url" jdbcType="VARCHAR" property="tableUrl" />
     <result column="datetime" jdbcType="DATE" property="datetime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiao.zdhospital.entity.SysTable">
-    <result column="table_path" jdbcType="LONGVARCHAR" property="tablePath" />
-  </resultMap>
+
   <sql id="Base_Column_List">
     table_id, datetime
   </sql>
   <sql id="Blob_Column_List">
     table_path
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from sys_table
-    where table_id = #{tableId,jdbcType=INTEGER}
-  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_table
     where table_id = #{tableId,jdbcType=INTEGER}
@@ -80,4 +73,8 @@
     set datetime = #{datetime,jdbcType=DATE}
     where table_id = #{tableId,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select * from sys_table
+  </select>
 </mapper>

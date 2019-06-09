@@ -79,4 +79,9 @@
       t_id = #{tId,jdbcType=INTEGER}
     where he_id = #{heId,jdbcType=INTEGER}
   </update>
+
+  <select id="find" parameterType="int" resultMap="BaseResultMap">
+    select * from sys_health where t_id = #{tid}
+  </select>
+
 </mapper>
