@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysHistory;
 
+import java.util.List;
+
 public interface SysHistoryMapper {
     int deleteByPrimaryKey(Integer hid);
 
@@ -16,4 +18,6 @@ public interface SysHistoryMapper {
     int updateByPrimaryKeyWithBLOBs(SysHistory record);
 
     int updateByPrimaryKey(SysHistory record);
+
+    public List<SysHistory> findAll();
 }
