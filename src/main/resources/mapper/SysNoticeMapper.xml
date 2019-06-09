@@ -92,4 +92,9 @@
       ndate = #{ndate,jdbcType=DATE}
     where nid = #{nid,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+
+    select * from sys_notice
+  </select>
 </mapper>

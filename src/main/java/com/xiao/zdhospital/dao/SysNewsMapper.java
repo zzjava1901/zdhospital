@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysNews;
 
+import java.util.List;
+
 public interface SysNewsMapper {
     int deleteByPrimaryKey(Integer newsId);
 
@@ -16,4 +18,6 @@ public interface SysNewsMapper {
     int updateByPrimaryKeyWithBLOBs(SysNews record);
 
     int updateByPrimaryKey(SysNews record);
+
+    public List<SysNews> findAll();
 }

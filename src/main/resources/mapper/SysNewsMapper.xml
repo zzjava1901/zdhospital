@@ -92,4 +92,9 @@
       news_date = #{newsDate,jdbcType=DATE}
     where news_id = #{newsId,jdbcType=INTEGER}
   </update>
+  
+  <select id="findAll" resultMap="BaseResultMap">
+
+  SELECT  * from sys_news
+  </select>
 </mapper>
