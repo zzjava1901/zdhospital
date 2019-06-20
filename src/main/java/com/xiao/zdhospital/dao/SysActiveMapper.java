@@ -2,6 +2,8 @@ package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysActive;
 
+import java.util.List;
+
 public interface SysActiveMapper {
     int deleteByPrimaryKey(Integer aid);
 
@@ -16,4 +18,6 @@ public interface SysActiveMapper {
     int updateByPrimaryKeyWithBLOBs(SysActive record);
 
     int updateByPrimaryKey(SysActive record);
+
+    public List<SysActive> findAll();
 }

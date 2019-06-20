@@ -7,7 +7,7 @@
 <title>我的虚拟世界店铺</title>
 <link href="css/css_whir.css" rel="stylesheet" type="text/css" />
 <script src="Scripts/jquery-1.4.2.min.js" type="text/javascript"></script>
-
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body class="bgbody">
@@ -16,8 +16,8 @@
     <a href="#" class="logo"></a>
     <span class="nav"><em style="display:none;"><b>超级管理员</b> <a href="#">退出登录</a></em><em><a href="#">登录</a> | <a href="#">注册</a></em> | <a href="#">网站地图</a> | <a href="contact.html">联系我们</a> | <a href="#" onclick="javascript:addfavor('http://www.zdhyyy.com/','我的虚拟世界店铺');">加入收藏</a></span>
     <span class="search">
-    <input type="text" name="textfield" id="textfield" value="搜索关键词" onblur="if(this.value=='')this.value='搜索关键词';" onfocus="this.value='';" class="text" />
-    <input type="submit" name="button" id="button" value="" class="btn" />
+   <!-- <input type="text" name="textfield" id="textfield" value="搜索关键词" onblur="if(this.value=='')this.value='搜索关键词';" onfocus="this.value='';" class="text" />
+    <input type="submit" name="button" id="button" value="" class="btn" />-->
     </span>
     <div class="mainnav">
         <ul>
@@ -195,10 +195,14 @@ return false;
             <h1>招聘表格</h1>
         </div>
         
-        <div class="NewsList">
+        <div class="NewsList" id="app">
             <ul>
-                <li><span>2013-04-02</span><a href="#">广义的医院文化泛指医院主体和客体在长期的医学实践中创造的特定的物质财富和精神财富的总和</a></li>
-                <li><span>2013-04-02</span><a href="#">包括医院硬文化和医院软文化两大方面。医院硬文化主要是指医院内的物质状态</a></li>
+
+                <li v-for="s in sysTableList">
+                    <span>{{s.datetime}}</span><a href="#">{{s.tableTitle}}</a>
+                </li>
+
+               <!-- <li><span>2013-04-02</span><a href="#">包括医院硬文化和医院软文化两大方面。医院硬文化主要是指医院内的物质状态</a></li>
                 <li><span>2013-04-02</span><a href="#">医疗设备、医院建筑、医院环境、医疗技术水平和医院效益等有形的东西</a></li>
                 <li><span>2013-04-02</span><a href="#">其主体是物。医院软文化是指医院在历史发展过程中形成的具有本医院特色的思想、意识、观念等</a></li>
                 <li><span>2013-04-02</span><a href="#">意识形态和行为模式以及与之相适应的制度和组织结构</a></li>
@@ -208,13 +212,16 @@ return false;
                 <li><span>2013-04-02</span><a href="#">价值观念、生活方式和行为准则等等，即医院软文化</a></li>
                 <li><span>2013-04-02</span><a href="#">医院的文化对于任何医院来说，本身的就存在的，而且是别的医院所不具备的</a></li>
                 <li><span>2013-04-02</span><a href="#">主导它的是一种精神价值观，一个医院在发展的过程中，组织的氛围</a></li>
-                <li><span>2013-04-02</span><a href="#">组织的价值观是逐步形成的，是存在于组织体内的，这种文化的核心价值观是需要提炼的</a></li>
+                <li><span>2013-04-02</span><a href="#">组织的价值观是逐步形成的，是存在于组织体内的，这种文化的核心价值观是需要提炼的</a></li>-->
           </ul>
       </div>
       
     <!--Pages-->
-    <div class="Pages">
-        <span class="p_cur">目前在第<b>1</b>页,</span>
+
+        <div class="Pages">
+
+
+      &lt;!&ndash; <span class="p_cur">目前在第<b>1</b>页,</span>
         <span class="p_count">共有<b>3</b>页,</span>
         <span class="p_total">共有<b>3</b>条记录</span>
       <span class="p_page">
@@ -226,7 +233,7 @@ return false;
       <b class="f2">页</b>
       <input class="i_button" type="submit" name="button" id="button" value="" />
       </span>
-    </div>
+    </div>&ndash;&gt;
     <!--Pages-->
         
     </div>
@@ -246,6 +253,43 @@ Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http:
 <script type="text/javascript">
  var nav= '11'
  jQuery("#nav11").attr("class", "onnav");
+</script>
+
+<script type="text/javascript">
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            // 用户列表
+            sysTableList:[]
+        },
+        methods:{
+            loadData:function(page){
+                var _this = this;
+                $.ajax({
+                    type:"get",
+                    url:"/sysTable/findAll?page=" + page,
+                    dataType:"json",
+                    success:function(info){
+                        if(info.code == 1){
+//                            $("tbody").empty();
+
+                            _this.sysTableList = info.data.rows;
+                            // alert(_this.sysSchoolList[0].jobname);
+
+
+                        }
+                    }
+                })
+            }
+
+        },
+        created:function(){ // 生命周期相关的函数，放在methods外面；created表示vue对象创建完成
+            this.loadData(1);
+        }
+
+
+    })
+
 </script>
 </body>
 </html>

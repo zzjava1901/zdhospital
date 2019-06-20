@@ -92,4 +92,9 @@
       fdate = #{fdate,jdbcType=DATE}
     where fid = #{fid,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+
+    SELECT  * from sys_focus
+  </select>
 </mapper>

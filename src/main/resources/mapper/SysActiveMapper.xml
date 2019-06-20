@@ -92,4 +92,9 @@
       adate = #{adate,jdbcType=DATE}
     where aid = #{aid,jdbcType=INTEGER}
   </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+
+      SELECT  * from sys_active
+  </select>
 </mapper>

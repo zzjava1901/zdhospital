@@ -6,8 +6,8 @@
 <meta name="Author" content="">
 <title>我的虚拟世界店铺</title>
 <link href="css/css_whir.css" rel="stylesheet" type="text/css" />
-<script src="Scripts/jquery-1.4.2.min.js" type="text/javascript"></script>
-
+<script src="js/jquery-1.12.2.min.js" type="text/javascript"></script>
+    <script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body class="bgbody">
@@ -16,8 +16,8 @@
     <a href="#" class="logo"></a>
     <span class="nav"><em style="display:none;"><b>超级管理员</b> <a href="#">退出登录</a></em><em><a href="#">登录</a> | <a href="#">注册</a></em> | <a href="#">网站地图</a> | <a href="contact.html">联系我们</a> | <a href="#" onclick="javascript:addfavor('http://www.zdhyyy.com/','我的虚拟世界店铺');">加入收藏</a></span>
     <span class="search">
-    <input type="text" name="textfield" id="textfield" value="搜索关键词" onblur="if(this.value=='')this.value='搜索关键词';" onfocus="this.value='';" class="text" />
-    <input type="submit" name="button" id="button" value="" class="btn" />
+    <!--<input type="text" name="textfield" id="textfield" value="搜索关键词" onblur="if(this.value=='')this.value='搜索关键词';" onfocus="this.value='';" class="text" />-->
+    <!--<input type="submit" name="button" id="button" value="" class="btn" />-->
     </span>
     <div class="mainnav">
         <ul>
@@ -196,14 +196,24 @@ return false;
         </div>
         
     <!--Start-->
-    <div class="JobsList">
+    <div class="JobsList" id="app">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <th class="name">职位名称</th>
-            <th width="120">招聘人数</th>
-            <th width="120">发布时间</th>
-          </tr>
-          <tr>
+            <thead>
+                  <tr>
+                    <th class="name">职位名称</th>
+                    <th width="120">招聘人数</th>
+                    <th width="120">发布时间</th>
+                  </tr>
+            </thead>
+            <tbody >
+
+                <tr v-for="s in sysSchoolList">
+                    <td class="name">{{s.jobname}}</td>
+                    <td>{{s.num}}</td>
+                    <td>{{s.datetime}}</td>
+                </tr>
+            </tbody>
+          <!--<tr>
             <td class="name"><a href="jobsinfo.html">媒体专员</a></td>
             <td>20</td>
             <td>2013-05-11</td>
@@ -217,7 +227,7 @@ return false;
             <td class="name"><a href="jobsinfo.html">媒体专员</a></td>
             <td>20</td>
             <td>2013-05-11</td>
-          </tr>
+          </tr>-->
         </table>
     </div>
     <!--End-->
@@ -230,7 +240,7 @@ return false;
       <span class="p_page">
         <a href="#" class="a_first">首页</a><a href="#" class="a_prev">上一页</a>
         <em class="num"><a href="#" class="a_cur">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a></em>
-        <a href="#" class="a_next">下一页</a><a href="#" class="a_end">末页</a> 
+        <a href="#" class="a_next">下一页</a><a href="#" class="a_end">末页</a>
       <b class="f1">跳转到</b>
         <input class="i_text" type="text" name="textfield" id="textfield" />
       <b class="f2">页</b>
@@ -256,6 +266,44 @@ Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http:
 <script type="text/javascript">
  var nav= '11'
  jQuery("#nav11").attr("class", "onnav");
+</script>
+<script type="text/javascript">
+
+
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            // 用户列表
+            sysSchoolList:[]
+        },
+        methods:{
+            loadData:function(page){
+                var _this = this;
+                $.ajax({
+                    type:"get",
+                    url:"/sysSchool/findAll?page=" + page,
+                    dataType:"json",
+                    success:function(info){
+                        if(info.code == 1){
+                            $("tbody").empty();
+
+                            _this.sysSchoolList = info.data.rows;
+                           // alert(_this.sysSchoolList[0].jobname);
+
+
+                        }
+                    }
+                })
+            }
+
+        },
+        created:function(){ // 生命周期相关的函数，放在methods外面；created表示vue对象创建完成
+            this.loadData(1);
+        }
+
+
+    })
+
 </script>
 </body>
 </html>

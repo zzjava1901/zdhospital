@@ -1,6 +1,6 @@
 package com.xiao.zdhospital.service.impl;
 
-import com.sun.xml.internal.bind.v2.model.core.ReferencePropertyInfo;
+
 import com.xiao.zdhospital.dao.SysIllbedMapper;
 import com.xiao.zdhospital.entity.SysIllbed;
 import com.xiao.zdhospital.service.SysIllbedService;
