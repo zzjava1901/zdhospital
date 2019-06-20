@@ -6,11 +6,12 @@
 <meta name="Author" content="">
 <title>我的虚拟世界店铺</title>
 <link href="css/css_whir.css" rel="stylesheet" type="text/css" />
-<script src="Scripts/jquery-1.4.2.min.js" type="text/javascript"></script>
-    <script src="Scripts/MSClass.js" type="text/javascript"></script>
+ <script src="Scripts/MSClass.js" type="text/javascript"></script>
     <script type="text/javascript" src="./js/jquery.js"></script>
     <script type="text/javascript" src="./js/javascript.js"></script>
     <script type="text/javascript" src="./js/vue.min.js"> </script>
+
+<script src="Scripts/MSClass.js" type="text/javascript"></script>
 </head>
 
 <body class="bgbody">
@@ -22,21 +23,12 @@
     <input type="text" name="textfield" id="textfield" value="搜索关键词" onblur="if(this.value=='')this.value='搜索关键词';" onfocus="this.value='';" class="text" />
     <input type="submit" name="button" id="button" value="" class="btn" />
     </span>
-    <div class="mainnav" id="app" v-for="m in menu">
-        <ul>
-            <li id="{{m.titleId}}"><span><a href="index.html">{{m.titleName}}</a></span></li>
-            <!--<li id="nav2"><span><a href="about.html">医院概况</a></span>
-                <div class="sub">
-                <a href="#">医院介绍</a>
-                <a href="#">领导团队</a>
-                <a href="#">组织架构</a>
-                <a href="#">历史沿革</a>
-                <a href="#">图片资料</a>
-                <a href="#">医院文化</a>
-                <a href="#">所获荣誉</a>
-                <a href="#">设备仪器</a>
-                </div>
-            </li>
+    <div class="mainnav">
+        <ul id="mainindex">
+            <li id="nav1"><span><a href="index.html">首页</a></span></li>
+		<!--
+
+            
             <li id="nav3"><span><a href="news.html">新闻动态</a></span>
                 <div class="sub">
                 <a href="#">医院新闻</a>
@@ -52,7 +44,7 @@
                 <a href="#">历史背景</a>
                 <a href="#">党团新闻</a>
                 <a href="#">知识理论</a>
-                <a href="#">纪检督察</a>
+                <a href="#">纪检督察</a>                
                 </div>
             </li>
             <li id="nav5"><span><a href="department.html">科室导航</a></span>
@@ -115,7 +107,7 @@
                 <a href="#">内部招聘</a>
                 <a href="#">招聘表格</a>
                 </div>
-            </li>-->
+            </li>--> 
         </ul>
     </div>
 </div>
@@ -489,38 +481,44 @@ Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http:
  jQuery("#nav1").attr("class", "onnav");
 </script>
 
-
 <script type="text/javascript">
-    var vue = new Vue({
-        el:"#app",
-        data:{
-            //一级分类展示
-            menu:[]
-        },
-        methods:{
-            bind(titleFlag){
-                var _this = this;
-                $.ajax({
-                    type:"get",
-                    url:"/sysTitle/menu.do?titleFlag="+titleFlag,
-                    dataType:"json",
-                    success:function (data) {
-                            _this.menu=data.data;
+    $(function(){
+        $.ajax({
+            type:"get",
+            url:"/sysTitle/findAllMenu.do",
+            dataType:"json",
+            success:function(data){
+                if(data.code == 1){
+					var index = 1;
+                    var infos = data.data;
+                    $(infos).each(function(index, item){
+					
+                  var html =' <li id="nav' +(index+1)+ '"><span><a href="about.html">'+item.menuName+'</a></span>';
 
-                    }
-                })
+                           var cmenus = item.menuList;
+
+						html+='  <div class="sub">';
+
+                        $(cmenus).each(function(){
+                          html+='    <a href="'+ this.menuUrl +'">'+this.menuName+'</a>';
+                        })
+                        html+='     </div>';
+                        html+='     </li>';
+                        $("#mainindex").append($(html));
+                    })
+					
+                }else{
+                    alert(data.data);
+                }
+
             }
-
-        },
-
-        created(){
-            this.bind(1);
-        }
-
+        })
     })
 
-
 </script>
+
+
+
 
 </body>
 </html>

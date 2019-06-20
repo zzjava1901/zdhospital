@@ -3,6 +3,7 @@ package com.xiao.zdhospital.service.impl;
 import com.xiao.zdhospital.dao.SysTitleMapper;
 import com.xiao.zdhospital.entity.SysTitle;
 import com.xiao.zdhospital.service.SysTitleService;
+import com.xiao.zdhospital.vo.VMeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,11 @@ private SysTitleMapper titleDao;
     public List<SysTitle> submenu(int titleFuId) {
 
         return titleDao.submenu(titleFuId);
+    }
+
+    @Override
+    public List<VMeInfo> findAllList() {
+        List<VMeInfo> list = titleDao.findAllList();
+        return list;
     }
 }

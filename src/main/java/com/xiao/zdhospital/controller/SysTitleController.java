@@ -3,6 +3,7 @@ package com.xiao.zdhospital.controller;
 import com.xiao.zdhospital.entity.SysTitle;
 import com.xiao.zdhospital.service.SysTitleService;
 import com.xiao.zdhospital.vo.R;
+import com.xiao.zdhospital.vo.VMeInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,12 @@ public class SysTitleController {
         return R.setOK("OK",list);
     }
 
-
+    @ApiOperation(value = "一级二级菜单展示", notes = "这是一个菜单展示")
+    @RequestMapping(value = "findAllMenu.do", method = RequestMethod.GET)
+    public R  showAllMenu(){
+        List<VMeInfo> Menulist = titleService.findAllList();
+        return R.setOK("OK",Menulist);
+    }
 
 
 }

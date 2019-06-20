@@ -198,13 +198,17 @@ return false;
             <h1>医院新闻</h1>
         </div>
         
-        <div class="NewsList"id="abc">
+
+        <div class="NewsList" id="app">
             <ul>
+                <li  v-for="n in sysTableList">
+                    {{n.newsId}}
+                    <span>{{n.newsDate}}</span><a href="newsinfo.html">{{n.newsTitle}}</a>
+                </li>
 
-                <li v-for="new in newList"><span>{{new.newsDate}}</span><a href="newsinfo.html">{{new.newsTitle}}}</a></li>
 
-          </ul>
-      </div>
+            </ul>
+        </div>
       
     <!--Pages-->
     <div class="Pages">
@@ -243,15 +247,14 @@ Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http:
 </script>
 
 <script type="text/javascript">
-
     var vue = new Vue({
-        el:"#abc",
+        el:"#app",
         data:{
             // 用户列表
-            newList:[]
+            sysTableList:[]
         },
         methods:{
-            loadData(page){
+            loadData:function(page){
                 var _this = this;
                 $.ajax({
                     type:"get",
@@ -259,8 +262,11 @@ Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http:
                     dataType:"json",
                     success:function(info){
                         if(info.code == 1){
-                            // 修改vue对象中userList的值
-                            _this.newList = info.data.rows;
+//                            $("tbody").empty();
+
+                            _this.sysTableList = info.data.rows;
+                            // alert(_this.sysSchoolList[0].jobname);
+                            alert(_this.sysTableList);
 
                         }
                     }
@@ -268,13 +274,15 @@ Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http:
             }
 
         },
-        created(){ // 生命周期相关的函数，放在methods外面；created表示vue对象创建完成
-            this.loadData(1)
+        created:function(){ // 生命周期相关的函数，放在methods外面；created表示vue对象创建完成
+            this.loadData(1);
         }
 
 
     })
+
 </script>
+
 
 </body>
 </html>

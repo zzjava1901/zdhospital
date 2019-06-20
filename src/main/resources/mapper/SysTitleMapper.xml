@@ -98,4 +98,22 @@
     select * from sys_title where title_fu_id = #{titleFuId}
   </select>
 
+  <resultMap type="com.xiao.zdhospital.vo.VMeInfo" id="menuMap">
+    <id column="title_id" property="menuId"/>
+    <result column="title_name" property="menuName"/>
+    <result column="title_url" property="menuUrl"/>
+    <collection property="menuList" javaType="java.util.ArrayList" ofType="com.xiao.zdhospital.vo.VMeInfo">
+      <id column="cid" property="menuId"/>
+      <result column="cname" property="menuName"/>
+      <result column="curl" property="menuUrl"/>
+    </collection>
+
+  </resultMap>
+
+  <select id="findAllList"  resultMap="menuMap">
+   SELECT p.title_id,p.title_name,p.title_url,c.title_id cid,c.title_name cname,c.title_url curl from sys_title p
+    INNER JOIN sys_title c
+    on c.title_fu_id = p.title_id
+  </select>
+
 </mapper>

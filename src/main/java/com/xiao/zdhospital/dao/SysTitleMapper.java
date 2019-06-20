@@ -1,6 +1,7 @@
 package com.xiao.zdhospital.dao;
 
 import com.xiao.zdhospital.entity.SysTitle;
+import com.xiao.zdhospital.vo.VMeInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -22,5 +23,7 @@ public interface SysTitleMapper {
     public List<SysTitle> menu(int titleFlag);
 
     public List<SysTitle> submenu(int titleFuId);
+
+    public List<VMeInfo> findAllList();
 
 }
