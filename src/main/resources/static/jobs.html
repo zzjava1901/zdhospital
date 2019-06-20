@@ -199,11 +199,11 @@ return false;
     <div class="JobsList" id="app">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <thead>
-          <tr>
-            <th class="name">职位名称</th>
-            <th width="120">招聘人数</th>
-            <th width="120">发布时间</th>
-          </tr>
+                  <tr>
+                    <th class="name">职位名称</th>
+                    <th width="120">招聘人数</th>
+                    <th width="120">发布时间</th>
+                  </tr>
             </thead>
             <tbody >
 
@@ -277,11 +277,11 @@ Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http:
             sysSchoolList:[]
         },
         methods:{
-            loadData:function(){
+            loadData:function(page){
                 var _this = this;
                 $.ajax({
                     type:"get",
-                    url:"/sysSchool/findAll?page=1",
+                    url:"/sysSchool/findAll?page=" + page,
                     dataType:"json",
                     success:function(info){
                         if(info.code == 1){
@@ -298,7 +298,7 @@ Copyright © 2013 我的虚拟世界店铺 .All Rights Reserved.  <a href="http:
 
         },
         created:function(){ // 生命周期相关的函数，放在methods外面；created表示vue对象创建完成
-            this.loadData();
+            this.loadData(1);
         }
 
 

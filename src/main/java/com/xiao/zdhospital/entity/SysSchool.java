@@ -1,5 +1,7 @@
 package com.xiao.zdhospital.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class SysSchool {
@@ -9,6 +11,7 @@ public class SysSchool {
 
     private Integer num;
 
+    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone="GMT + 8")
     private Date datetime;
 
     public Integer getSchoolId() {
